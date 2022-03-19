@@ -1,0 +1,21 @@
+{
+  "name": "dealers_choice_full_stack",
+  "version": "1.0.0",
+  "description": "Full Stack HW",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TryHarder3l33t/dealers_choice_full_stack.git"
+  },
+  "keywords": [],
+  "author": "Eirc Rodgers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TryHarder3l33t/dealers_choice_full_stack/issues"
+  },
+  "homepage": "https://github.com/TryHarder3l33t/dealers_choice_full_stack#readme"
+}
