@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/TryHarder3l33t/dealers_choice_full_stack/issues"
   },
-  "homepage": "https://github.com/TryHarder3l33t/dealers_choice_full_stack#readme"
+  "homepage": "https://github.com/TryHarder3l33t/dealers_choice_full_stack#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
 }
