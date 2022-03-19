@@ -20,6 +20,9 @@
   "homepage": "https://github.com/TryHarder3l33t/dealers_choice_full_stack#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.15"
   }
 }
