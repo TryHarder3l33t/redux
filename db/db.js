@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const db = new Sequelize(
   process.env.DATABASE_URL || "postgres://localhost/dealers_choice_full_stack",
   {
@@ -6,4 +6,4 @@ const db = new Sequelize(
   }
 );
 
-module.exports = { db, Sequelize };
+module.exports = { db, DataTypes };

@@ -17,6 +17,7 @@ const seed = async () => {
   } catch (error) {
     console.log(error);
   }
+  console.log("seeded");
 };
 
 module.exports = seed;
