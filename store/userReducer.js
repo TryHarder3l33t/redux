@@ -1,7 +1,8 @@
 import {
-  FETCH_USERS_FAILURE,
-  FETCH_USERS_REQUEST,
+  FAILURE,
+  REQUEST,
   FETCH_USER_SUCCESS,
+  CREATE_USER_SUCCESS,
 } from "./types";
 
 const initialState = {
@@ -12,23 +13,34 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_REQUEST:
+    case REQUEST:
       return {
         ...state,
         loading: true,
       };
+
+    case FAILURE:
+      return {
+        loading: false,
+        users: [],
+        error: action.payload,
+      };
+
+    case CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: [...state.users, action.payload],
+        error: "",
+      };
+
     case FETCH_USER_SUCCESS:
       return {
         loading: false,
         users: action.payload,
         error: "",
       };
-    case FETCH_USERS_FAILURE:
-      return {
-        loading: false,
-        users: [],
-        error: action.payload,
-      };
+
     default:
       return state;
   }

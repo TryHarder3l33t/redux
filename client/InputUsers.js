@@ -9,6 +9,7 @@ const InputUsers = (props) => {
   return (
     <div>
       <h2>Users - {props.numberOfUsers}</h2>
+
       <input
         type="text"
         value={number}

@@ -9,6 +9,8 @@ app.listen(port, () => {
   console.log(`"\u001b[1;42m" ${Date().toString()} "\u001b[0m"`);
   console.log(`Express is running on port ${port}`);
 });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));

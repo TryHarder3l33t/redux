@@ -9,5 +9,17 @@ router.get("/", async (req, res) => {
     console.log(error);
   }
 });
+router.post("/", async (req, res) => {
+  try {
+    const data = await User.create({
+      name: req.body.name,
+    });
+    console.log(data.name);
+    // res.sendStatus(data);
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

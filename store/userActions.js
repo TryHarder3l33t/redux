@@ -1,14 +1,21 @@
 import {
-  FETCH_USERS_FAILURE,
-  FETCH_USERS_REQUEST,
+  FAILURE,
+  REQUEST,
   FETCH_USER_SUCCESS,
+  CREATE_USER_SUCCESS,
 } from "./types";
 
 import axios from "axios";
 
-export const fetchUsersRequest = () => {
+export const request = () => {
   return {
-    type: FETCH_USERS_REQUEST,
+    type: REQUEST,
+  };
+};
+const failure = (error) => {
+  return {
+    type: FAILURE,
+    payload: error,
   };
 };
 
@@ -19,36 +26,55 @@ const fetchUsersSuccess = (users) => {
   };
 };
 
-const fetchUsersFailure = (error) => {
-  return {
-    type: FETCH_USERS_FAILURE,
-    payload: error,
-  };
-};
-
 //async action creator aka thunk
 //Returns functions (dispatch)=> and takes dispatch as an argument vs normal action creators that return actions {}
 //https://jsonplaceholder.typicode.com/users
 export const fetchUsers = () => {
   return async (dispatch) => {
     try {
-      dispatch(fetchUsersRequest);
+      dispatch(request());
+      setTimeout({}, 500);
       const { data } = await axios.get("api/users");
       const users = data;
       dispatch(fetchUsersSuccess(users));
     } catch (err) {
       const errMsg = err.message;
-      return dispatch(fetchUsersFailure(errMsg));
+      return dispatch(failure(errMsg));
     }
   };
 };
 
-// export const createUser = async(name) => {
-//   return (
-//     try {
+const _createUser = (user) => {
+  console.log(user);
+  console.log(user);
 
-//     } catch (error) {
+  return {
+    type: CREATE_USER_SUCCESS,
+    payload: user,
+  };
+};
 
-//     }
-//   )
-// }
+export const createUser = (name = "Unicorn default") => {
+  return async (dispatch) => {
+    try {
+      dispatch(request());
+      name = { name: name };
+      const { data } = await axios.post("/api/users", name);
+
+      dispatch(_createUser(data));
+    } catch (err) {
+      const errMsg = err.message;
+      return dispatch(failure(errMsg));
+    }
+  };
+};
+
+export const deleteUser = () => {
+  return async (dispatch) => {
+    try {
+    } catch (error) {
+      const errMsg = err.message;
+      return dispatch(failure(errMsg));
+    }
+  };
+};
