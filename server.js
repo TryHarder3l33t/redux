@@ -15,4 +15,6 @@ app.get("/", (req, res) => {
 });
 app.use("/dist", express.static(path.join(__dirname, "dist")));
 
+app.use("/api", require("./api"));
+
 seed();

@@ -7,7 +7,7 @@ const initialState = {
 };
 
 //Function that takes a state and action and returns a new state
-const userReducer = (state = initialState, action) => {
+const normUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NORM_USER:
       return {
@@ -25,4 +25,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default normUserReducer;
