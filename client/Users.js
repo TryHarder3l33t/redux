@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchUsers, createUser, deleteUser } from "../store/userActions";
+import { Link } from "react-router-dom";
 
 const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
   useEffect(() => {
@@ -22,9 +23,11 @@ const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
           userData.users &&
           userData.users.map((user) => (
             <div key={user.id}>
+              <br />{" "}
+              <Link to={`/detail/${user.id}`}>
+                <li>{user.name}</li>
+              </Link>
               <br />
-              <li>{user.name}</li>
-
               <button onClick={() => deleteUser(user.id)}>
                 Delete {user.name}
               </button>
@@ -32,7 +35,7 @@ const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
             </div>
           ))}
       </ul>
-      <h1>Hello</h1>
+      <h2>Create A User</h2>
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
@@ -47,7 +50,7 @@ const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
         ></input>
         <button disabled={!name}> Add User {name}</button>
       </form>
-      Name
+
       <pre> {name}</pre>
     </div>
   );

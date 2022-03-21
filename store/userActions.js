@@ -34,7 +34,6 @@ export const fetchUsers = () => {
   return async (dispatch) => {
     try {
       dispatch(request());
-      //setTimeout({}, 500);
       const { data } = await axios.get("api/users");
       const users = data;
       dispatch(_fetchUsers(users));
