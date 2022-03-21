@@ -22,4 +22,16 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/", async (req, res) => {
+  try {
+    console.log("This is the body");
+    console.log(req.body.id);
+
+    const data = await User.findByPk(req.body.id);
+    await data.destroy();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

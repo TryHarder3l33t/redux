@@ -3,6 +3,7 @@ import {
   REQUEST,
   FETCH_USER_SUCCESS,
   CREATE_USER_SUCCESS,
+  DELETE_USER_SUCCESS,
 } from "./types";
 
 const initialState = {
@@ -31,6 +32,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         users: [...state.users, action.payload],
+        error: "",
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: state.users.filter((user) => action.payload !== user.id),
         error: "",
       };
 

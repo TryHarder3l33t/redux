@@ -3,6 +3,7 @@ import {
   REQUEST,
   FETCH_USER_SUCCESS,
   CREATE_USER_SUCCESS,
+  DELETE_USER_SUCCESS,
 } from "./types";
 
 import axios from "axios";
@@ -33,7 +34,7 @@ export const fetchUsers = () => {
   return async (dispatch) => {
     try {
       dispatch(request());
-      setTimeout({}, 500);
+      //setTimeout({}, 500);
       const { data } = await axios.get("api/users");
       const users = data;
       dispatch(fetchUsersSuccess(users));
@@ -45,9 +46,6 @@ export const fetchUsers = () => {
 };
 
 const _createUser = (user) => {
-  console.log(user);
-  console.log(user);
-
   return {
     type: CREATE_USER_SUCCESS,
     payload: user,
@@ -60,7 +58,6 @@ export const createUser = (name = "Unicorn default") => {
       dispatch(request());
       name = { name: name };
       const { data } = await axios.post("/api/users", name);
-
       dispatch(_createUser(data));
     } catch (err) {
       const errMsg = err.message;
@@ -69,10 +66,24 @@ export const createUser = (name = "Unicorn default") => {
   };
 };
 
-export const deleteUser = () => {
+const _deleteUser = (user) => {
+  return {
+    type: DELETE_USER_SUCCESS,
+    payload: user,
+  };
+};
+
+export const deleteUser = (id = 1) => {
   return async (dispatch) => {
+    console.log(id);
+
     try {
-    } catch (error) {
+      dispatch(request());
+      id = { id: +id };
+      console.log(id.id);
+      const { data } = await axios.delete("/api/users", { data: id });
+      dispatch(_deleteUser(data));
+    } catch (err) {
       const errMsg = err.message;
       return dispatch(failure(errMsg));
     }

@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchUsers, createUser } from "../store/userActions";
+import { fetchUsers, createUser, deleteUser } from "../store/userActions";
 
-const Users = ({ fetchUsers, userData, createUser }) => {
+const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
   useEffect(() => {
     //[]makes it only dispatch once
     fetchUsers();
   }, []);
 
-  const submit = (ev) => {
-    ev.preventdefault();
-    createUser(name);
-  };
   const [name, setName] = useState("Eric");
   return userData.loading ? (
     <h1>Loading...</h1>
@@ -24,7 +20,12 @@ const Users = ({ fetchUsers, userData, createUser }) => {
       <ul>
         {userData &&
           userData.users &&
-          userData.users.map((user) => <li key={user.id}>{user.name}</li>)}
+          userData.users.map((user) => (
+            <div key={user.id}>
+              <li>{user.name}</li>
+              <button onClick={() => deleteUser(user.id)}>Delete</button>
+            </div>
+          ))}
       </ul>
       <h1>Hello</h1>
       <form
@@ -54,9 +55,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => dispatch(fetchUsers()),
     createUser: (name) => {
-      //good her
-      console.log(name);
       dispatch(createUser(name));
+    },
+    deleteUser: (id) => {
+      console.log("this is the id " + id);
+      dispatch(deleteUser(id));
     },
   };
 };
