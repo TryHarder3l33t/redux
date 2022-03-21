@@ -29,6 +29,7 @@ router.delete("/", async (req, res) => {
 
     const data = await User.findByPk(req.body.id);
     await data.destroy();
+    res.json(data);
   } catch (error) {
     console.log(error);
   }

@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        users: state.users.filter((user) => action.payload !== user.id),
+        users: state.users.filter((user) => action.payload.id !== user.id),
         error: "",
       };
 

@@ -67,6 +67,8 @@ export const createUser = (name = "Unicorn default") => {
 };
 
 const _deleteUser = (user) => {
+  console.log("this is the payload");
+  console.log(user);
   return {
     type: DELETE_USER_SUCCESS,
     payload: user,
@@ -82,6 +84,8 @@ export const deleteUser = (id = 1) => {
       id = { id: +id };
       console.log(id.id);
       const { data } = await axios.delete("/api/users", { data: id });
+      console.log("This is after");
+      console.log(data);
       dispatch(_deleteUser(data));
     } catch (err) {
       const errMsg = err.message;
