@@ -20,7 +20,7 @@ const failure = (error) => {
   };
 };
 
-const fetchUsersSuccess = (users) => {
+const _fetchUsers = (users) => {
   return {
     type: FETCH_USER_SUCCESS,
     payload: users,
@@ -37,7 +37,7 @@ export const fetchUsers = () => {
       //setTimeout({}, 500);
       const { data } = await axios.get("api/users");
       const users = data;
-      dispatch(fetchUsersSuccess(users));
+      dispatch(_fetchUsers(users));
     } catch (err) {
       const errMsg = err.message;
       return dispatch(failure(errMsg));

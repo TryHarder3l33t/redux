@@ -8,22 +8,27 @@ const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
     fetchUsers();
   }, []);
 
-  const [name, setName] = useState("Eric");
+  const [name, setName] = useState("");
+  const [update, setUpdate] = useState("");
   return userData.loading ? (
-    <h1>Loading...</h1>
+    <h2 style={{ color: "red" }}> Loading...</h2>
   ) : userData.error ? (
     <h2>We Didn't make It :( {userData.error}</h2>
   ) : (
     <div>
       <h2>Users</h2>
-
       <ul>
         {userData &&
           userData.users &&
           userData.users.map((user) => (
             <div key={user.id}>
+              <br />
               <li>{user.name}</li>
-              <button onClick={() => deleteUser(user.id)}>Delete</button>
+
+              <button onClick={() => deleteUser(user.id)}>
+                Delete {user.name}
+              </button>
+              <br />
             </div>
           ))}
       </ul>
@@ -31,6 +36,7 @@ const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
+          setName("");
           createUser(name);
         }}
       >
@@ -39,8 +45,10 @@ const Users = ({ fetchUsers, userData, createUser, deleteUser }) => {
           value={name}
           onChange={(ev) => setName(ev.target.value)}
         ></input>
-        <button> Add {name}</button>
+        <button disabled={!name}> Add User {name}</button>
       </form>
+      Name
+      <pre> {name}</pre>
     </div>
   );
 };
